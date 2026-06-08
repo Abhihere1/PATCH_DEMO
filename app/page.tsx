@@ -51,6 +51,7 @@ export default function MainPage() {
   const [incidentStatus, setIncidentStatus] = useState("Open");
   const [incidentCategory, setIncidentCategory] = useState("General");
   const [vdiKbAvailable, setVdiKbAvailable] = useState(false);
+  const [scannerKbAvailable, setScannerKbAvailable] = useState(false);
   const [pendingControl, setPendingControl] = useState<ControlDefinition | null>(null);
   const [pendingCountPrompt, setPendingCountPrompt] = useState<{ prompt: string } | null>(null);
   const [isClosed, setIsClosed] = useState(false);
@@ -72,7 +73,10 @@ export default function MainPage() {
 
     fetch("/api/kb/status")
       .then((r) => r.json())
-      .then((d: { vdiAvailable?: boolean }) => setVdiKbAvailable(!!d.vdiAvailable))
+      .then((d: { vdiAvailable?: boolean; scannerAvailable?: boolean }) => {
+        setVdiKbAvailable(!!d.vdiAvailable);
+        setScannerKbAvailable(!!d.scannerAvailable);
+      })
       .catch(() => {});
   }, [router]);
 
@@ -228,6 +232,10 @@ export default function MainPage() {
     sendMessage("I need help with a VDI issue", "vdi");
   };
 
+  const handleScannerTileClick = () => {
+    sendMessage("I have a problem with my Scanner", "scanner");
+  };
+
   const handleFormSubmit = (values: Record<string, string>[]) => {
     const formatted = values
       .map(
@@ -294,28 +302,53 @@ export default function MainPage() {
               </div>
             </div>
 
-            <button
-              data-testid="vdi-tile"
-              onClick={handleVdiTileClick}
-              className="group w-56 bg-white border border-gray-200 rounded-2xl p-6 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-red-300 hover:-translate-y-1 transition-all duration-150"
-            >
-              <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-2xl group-hover:bg-red-100 transition-colors">
-                🖥
-              </div>
-              <span data-testid="vdi-tile-label" className="font-semibold text-gray-800 text-sm">
-                VDI Support
-              </span>
-              <span
-                data-testid="vdi-kb-status"
-                className={`text-xs px-2.5 py-0.5 rounded-full font-medium ${
-                  vdiKbAvailable
-                    ? "bg-green-50 text-green-700"
-                    : "bg-gray-100 text-gray-500"
-                }`}
+            <div data-testid="category-tiles" className="flex flex-row gap-4 justify-center flex-wrap">
+              <button
+                data-testid="vdi-tile"
+                onClick={handleVdiTileClick}
+                className="group w-56 bg-white border border-gray-200 rounded-2xl p-6 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-red-300 hover:-translate-y-1 transition-all duration-150"
               >
-                {vdiKbAvailable ? "KB Available" : "KB Missing"}
-              </span>
-            </button>
+                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-2xl group-hover:bg-red-100 transition-colors">
+                  🖥
+                </div>
+                <span data-testid="vdi-tile-label" className="font-semibold text-gray-800 text-sm">
+                  VDI Support
+                </span>
+                <span
+                  data-testid="vdi-kb-status"
+                  className={`text-xs px-2.5 py-0.5 rounded-full font-medium ${
+                    vdiKbAvailable
+                      ? "bg-green-50 text-green-700"
+                      : "bg-gray-100 text-gray-500"
+                  }`}
+                >
+                  {vdiKbAvailable ? "KB Available" : "KB Missing"}
+                </span>
+              </button>
+
+              <button
+                data-testid="scanner-tile"
+                onClick={handleScannerTileClick}
+                className="group w-56 bg-white border border-gray-200 rounded-2xl p-6 flex flex-col items-center gap-3 shadow-sm hover:shadow-md hover:border-red-300 hover:-translate-y-1 transition-all duration-150"
+              >
+                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-2xl group-hover:bg-red-100 transition-colors">
+                  📷
+                </div>
+                <span data-testid="scanner-tile-label" className="font-semibold text-gray-800 text-sm">
+                  Scanner Support
+                </span>
+                <span
+                  data-testid="scanner-kb-status"
+                  className={`text-xs px-2.5 py-0.5 rounded-full font-medium ${
+                    scannerKbAvailable
+                      ? "bg-green-50 text-green-700"
+                      : "bg-gray-100 text-gray-500"
+                  }`}
+                >
+                  {scannerKbAvailable ? "KB Available" : "KB Missing"}
+                </span>
+              </button>
+            </div>
           </div>
         )}
 
