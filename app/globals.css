@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --patch-red: #DC2626;
+  --patch-red-hover: #B91C1C;
+  --patch-red-light: #FEF2F2;
+  --patch-bg: #F9FAFB;
+  --patch-border: #E5E7EB;
+  --patch-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  --patch-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #F9FAFB;
+  color: #111827;
+  font-family: 'Inter', 'DM Sans', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* Card base */
+.patch-card {
+  background: #fff;
+  border: 1px solid var(--patch-border);
+  border-radius: var(--patch-radius);
+  box-shadow: var(--patch-shadow);
+}
+
+/* Button base */
+.btn-primary {
+  background: var(--patch-red);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn-primary:hover {
+  background: var(--patch-red-hover);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #374151;
+  border: 1px solid var(--patch-border);
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-secondary:hover {
+  border-color: #9CA3AF;
+  background: #F9FAFB;
+}
+
+/* Transitions */
+.transition-smooth {
+  transition: all 0.15s ease;
+}
