@@ -41,3 +41,7 @@ export function getAllKbContent(): string {
 export function vdiKbAvailable(): boolean {
   return kbFileExists("vdi.md");
 }
+
+export function scannerKbAvailable(): boolean {
+  return kbFileExists("scanner.md");
+}
