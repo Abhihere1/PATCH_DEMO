@@ -1,0 +1,15 @@
+{
+  "cookies": [
+    {
+      "name": "patch_token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjcyYjgwNDc2MTA1NTE5ZDM5YmJjOSIsImVtYWlsIjoicGxheXdyaWdodC1lMmVAcGF0Y2gtdGVzdC5pbnRlcm5hbCIsInVzZXJuYW1lIjoiUGxheXdyaWdodFRlc3RlciIsImlhdCI6MTc4MDk1Mjc4NiwiZXhwIjoxNzgxNTU3NTg2fQ.hn_OwaHTwKr8lNHdlmiwHpfWjtdkR_f3WadOXRR80NU",
+      "domain": "patch-demo-three.vercel.app",
+      "path": "/",
+      "expires": 1781557586.865154,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}
